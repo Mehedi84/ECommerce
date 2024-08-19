@@ -22,3 +22,10 @@ Installation:
     9)Run "php artisan key:generate"
     10)Access the project on your local server at http://localhost.
 
+    Credentials:
+        Admin:
+            Email:admin@gmail.com
+            Pass:12345678
+        Student: 
+            Email:student@gmail.com
+            Pass:12345678
