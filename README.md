@@ -1,0 +1,1 @@
+# frontend_scaffolding_with_laravel_and_mofi_template
