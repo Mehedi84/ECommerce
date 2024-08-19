@@ -1,0 +1,17 @@
+.login-card {
+    background: transparent !important;
+}
+
+/* toaster */
+.toast-success{
+    background-color: #28A745;
+}
+.toast-warning{
+    background-color: #ffc107;
+}
+.toast-error{
+    background-color: #dc3545;
+}
+.toast-title, .toast-message{
+    color: #fff;
+}

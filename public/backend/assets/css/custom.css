@@ -1,0 +1,74 @@
+.custom-sidebar-stroke-icon {
+    color: #fff;
+}
+.custom-sidebar-stroke-icon i {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.page-wrapper.compact-wrapper .page-body-wrapper .according-menu {
+    top: 15px;
+}
+
+.custom-sidebar-list-text {
+    font-size: medium !important;
+}
+
+.sidebar-toggle i {
+    color: #fff;
+    font-size: large;
+    padding: 0px 3px;
+}
+.toggle-sidebar {
+    padding: 5px !important;
+}
+
+.custom-notification-icon {
+    padding: 0px 2px;
+}
+
+.custom-notification-icon i {
+    font-size: 17px;
+}
+
+/* toaster */
+.toast-success {
+    background-color: #28a745;
+}
+.toast-warning {
+    background-color: #ffc107;
+}
+.toast-error {
+    background-color: #dc3545;
+}
+.toast-title,
+.toast-message {
+    color: #fff;
+}
+
+.custom-table-center td,
+.custom-table-center th {
+    text-align: center !important;
+}
+
+/* Center align cells in a specific column */
+.custom-table-center td.column-class,
+.custom-table-center th.column-class {
+    text-align: center !important;
+}
+
+.save-btn {
+    padding: 0.375rem 1rem !important;
+    margin-right: 0px !important;
+}
+.save-btn i {
+    margin-right: 5px;
+}
+
+.list-product-header a.btn i {
+    padding-right: 0px;
+}
+
+.list-product-header > div{
+    margin-bottom: 0px;
+}
