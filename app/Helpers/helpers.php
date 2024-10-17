@@ -270,14 +270,29 @@ if (!function_exists('_get_date_from_datetime')) {
     function _get_date_from_datetime(string $dateTime = null)
     {
         if (is_null($dateTime)) {
-            return ''; 
+            return '';
         }
 
         try {
             $dateTimeObject = Carbon::parse($dateTime);
-            return $dateTimeObject->format('Y-m-d h:i:s A');  
+            return $dateTimeObject->format('Y-m-d h:i:s A');
         } catch (Throwable $e) {
-            return $dateTime; 
+            return $dateTime;
+        }
+    }
+
+    ## active/inactive status
+    if (!function_exists('status')) {
+        function status($status)
+        {
+            $html = '';
+            if ($status == '1') {
+                $html = '<span class="badge bg-info text-dark">Active</span>';
+            } else {
+                $html = '<span class="badge bg-danger">Inactive</span>';
+            }
+
+            return $html;
         }
     }
 }

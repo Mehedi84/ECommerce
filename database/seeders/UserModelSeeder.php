@@ -18,6 +18,7 @@ class UserModelSeeder extends Seeder
         $password = '12345678';
         $users = [
             [
+                'code' => 'EC-10001',
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make($password),
@@ -32,6 +33,7 @@ class UserModelSeeder extends Seeder
 
         $users3 = [
             [
+                'code' => 'EC-10002',
                 'name' => 'Student',
                 'email' => 'student@gmail.com',
                 'password' => Hash::make($password),

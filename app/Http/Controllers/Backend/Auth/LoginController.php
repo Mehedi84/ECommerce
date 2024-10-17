@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Exception\RouteNotFoundException;
  */
 class LoginController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -47,7 +47,7 @@ class LoginController extends Controller
 
         try {
             ## Attempt to login
-            if (Auth::attemptWhen(['email' => $request->email, 'password' => $request->password])) {
+            if (Auth::attemptWhen(['email' => $request->email, 'password' => $request->password, 'is_active' => '1'])) {
                 $user = User::with(['roles'])->find(auth()->id());
 
                 $session_inputs = [
@@ -68,7 +68,7 @@ class LoginController extends Controller
                 return redirect()->route('login');
             }
         } catch (\Throwable $th) {
-            
+
             if ($th instanceof RouteNotFoundException) {
 
                 ## Invalidate the user's session

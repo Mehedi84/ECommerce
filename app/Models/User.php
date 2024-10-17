@@ -25,6 +25,7 @@ class User extends Authenticatable
         'mobile',
         'is_active',
         'gender',
+        'code',
     ];
 
     /**

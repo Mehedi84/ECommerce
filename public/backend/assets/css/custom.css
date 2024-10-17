@@ -69,6 +69,20 @@
     padding-right: 0px;
 }
 
-.list-product-header > div{
+.list-product-header > div {
     margin-bottom: 0px;
+}
+
+.error_box {
+    border: 1px solid red;
+}
+
+.error_txt {
+    font-size: 10px;
+    float: right;
+    margin-top: 6px;
+}
+
+.modal-title {
+    line-height: 0px !important;
 }
