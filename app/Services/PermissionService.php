@@ -41,10 +41,10 @@ class PermissionService
                 'parent_checked' => 1,
                 'label' => 'user permissions',
                 'list' => [
-                    ['name' => 'user-list', 'checked' => 1],
-                    ['name' => 'user-create', 'checked' => 1],
-                    ['name' => 'user-edit', 'checked' => 1],
-                    ['name' => 'user-delete', 'checked' => 1],
+                    ['name' => 'users-show', 'checked' => 1],
+                    ['name' => 'users-create', 'checked' => 1],
+                    ['name' => 'users-edit', 'checked' => 1],
+                    ['name' => 'users-status-change', 'checked' => 1],
                 ],
             ],
         ];

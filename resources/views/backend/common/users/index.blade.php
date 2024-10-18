@@ -46,129 +46,129 @@
 <!--start indivisual pages javascript -->
 @push('js')
 <script>
-    $(document).ready(function() {
-        getData();
-    });
-    /**
-     * createModal
-     *
-     * @return modal
-     */
-    function createNew() {
+$(document).ready(function() {
+    getData();
+});
+/**
+ * createModal
+ *
+ * @return modal
+ */
+function createNew() {
 
-        openCreateModal("{{ route(\Request::segment(1) . '.users.create') }}");
-    }
-
-
-    /**
-     * submitData
-     *
-     * @return void
-     */
-    function submitData() {
-        const code = $('#code').val();
-        const name = $('#name').val();
-        const email = $('#email').val();
-        const mobile = $('#mobile').val();
-        const gender = $('#gender').val();
-        const password = $('#password').val();
-        upsert(
-            "{{ route(\Request::segment(1) . '.users.store') }}", "POST", {
-                'code': code,
-                'name': name,
-                'email': email,
-                'mobile': mobile,
-                'gender': gender,
-                'password': password,
-            }
-        );
-        getData();
-    }
-
-    /**
-     * changeStatus
-     *
-     * @return void
-     */
-    function changeStatus(id) {
-        const url = "{{ route(Request::segment(1) . '.users.status.change', ['id' => 'id']) }}".replace('id', id);
-        upsert(url, "PUT", {
-            _method: 'PUT'
-        });
-        getData();
-    }
-
-    /**
-     * editModal
-     *
-     * @return modal
-     */
-    function editModal(id) {
-        const url = "{{ route(Request::segment(1) . '.users.edit', ['id' => 'id']) }}".replace('id', id);
-        openEditModal(url);
-    }
+    openCreateModal("{{ route(\Request::segment(1) . '.users.create') }}");
+}
 
 
-    /**
-     * updateData
-     *
-     * @return void
-     */
-    function updateData(id) {
-        const code = $('#code').val();
-        const name = $('#name').val();
-        const email = $('#email').val();
-        const mobile = $('#mobile').val();
-        const gender = $('#gender').val();
-        const password = $('#password').val();
-        upsert("{{ route(\Request::segment(1) . '.users.update') }}", "POST", {
-            'id': id,
+/**
+ * submitData
+ *
+ * @return void
+ */
+function submitData() {
+    const code = $('#code').val();
+    const name = $('#name').val();
+    const email = $('#email').val();
+    const mobile = $('#mobile').val();
+    const gender = $('#gender').val();
+    const password = $('#password').val();
+    upsert(
+        "{{ route(\Request::segment(1) . '.users.store') }}", "POST", {
             'code': code,
             'name': name,
             'email': email,
             'mobile': mobile,
             'gender': gender,
             'password': password,
-        });
-        getData();
-    }
+        }
+    );
+    getData();
+}
+
+/**
+ * changeStatus
+ *
+ * @return void
+ */
+function changeStatus(id) {
+    const url = "{{ route(Request::segment(1) . '.users.status.change', ['id' => 'id']) }}".replace('id', id);
+    upsert(url, "PUT", {
+        _method: 'PUT'
+    });
+    getData();
+}
+
+/**
+ * editModal
+ *
+ * @return modal
+ */
+function editModal(id) {
+    const url = "{{ route(Request::segment(1) . '.users.edit', ['id' => 'id']) }}".replace('id', id);
+    openEditModal(url);
+}
 
 
-    function getData() {
-        dataTable("{{ route(Request::segment(1) . '.show') }}", {}, [{
-                data: 'id',
-                name: 'id'
-            },
-            {
-                data: 'code',
-                name: 'code'
-            },
-            {
-                data: 'name',
-                name: 'name'
-            },
-            {
-                data: 'email',
-                name: 'email'
-            },
-            {
-                data: 'mobile',
-                name: 'mobile'
-            },
-            {
-                data: 'genderData',
-                name: 'genderData'
-            },
-            {
-                data: 'statue',
-                name: 'statue'
-            },
-            {
-                data: 'actions',
-                name: 'actions'
-            }
-        ]);
-    }
+/**
+ * updateData
+ *
+ * @return void
+ */
+function updateData(id) {
+    const code = $('#code').val();
+    const name = $('#name').val();
+    const email = $('#email').val();
+    const mobile = $('#mobile').val();
+    const gender = $('#gender').val();
+    const password = $('#password').val();
+    upsert("{{ route(\Request::segment(1) . '.users.update') }}", "POST", {
+        'id': id,
+        'code': code,
+        'name': name,
+        'email': email,
+        'mobile': mobile,
+        'gender': gender,
+        'password': password,
+    });
+    getData();
+}
+
+
+function getData() {
+    dataTable("{{ route(Request::segment(1) . '.users.show') }}", {}, [{
+            data: 'id',
+            name: 'id'
+        },
+        {
+            data: 'code',
+            name: 'code'
+        },
+        {
+            data: 'name',
+            name: 'name'
+        },
+        {
+            data: 'email',
+            name: 'email'
+        },
+        {
+            data: 'mobile',
+            name: 'mobile'
+        },
+        {
+            data: 'genderData',
+            name: 'genderData'
+        },
+        {
+            data: 'statue',
+            name: 'statue'
+        },
+        {
+            data: 'actions',
+            name: 'actions'
+        }
+    ]);
+}
 </script>
 @endpush
 <!--end indivisual pages javascript -->

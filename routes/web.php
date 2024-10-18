@@ -40,9 +40,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'i
     });
 
     Route::controller(UserController::class)->group(function () {
-        Route::get('/users', 'index')->name('users');
+        Route::get('/users', 'index')->name('users')->middleware(['permission:role-list']);
         Route::get('/users/create', 'create')->name('users.create');
-        Route::get('/show', 'show')->name('show');
+        Route::get('/users/show', 'show')->name('users.show');
         Route::post('/users/store', 'store')->name('users.store');
         Route::put('/users/status/change/{id}', 'statusChange')->name('users.status.change');
         Route::get('/users/edit/{id}', 'edit')->name('users.edit');
@@ -54,7 +54,7 @@ Route::group(['as' => 'supervisor.', 'prefix' => 'supervisor', 'middleware' => [
 
     ## Dashboard
     Route::controller(SupervisorDashboardController::class)->group(function () {
-        Route::get('/dashboard', 'index')->name('dashboard');
+        Route::get('/dashboard', 'supervisor')->name('dashboard');
     });
 
     ## Role
@@ -68,11 +68,11 @@ Route::group(['as' => 'supervisor.', 'prefix' => 'supervisor', 'middleware' => [
     });
     Route::controller(UserController::class)->group(function () {
         Route::get('/users', 'index')->name('users');
-        Route::get('/users/create', 'create')->name('users.create');
-        Route::get('/show', 'show')->name('show');
+        Route::get('/users/create', 'create')->name('users.create')->middleware(['permission:users-create']);
+        Route::get('/users/show', 'show')->name('users.show')->middleware(['permission:users-show']);
         Route::post('/users/store', 'store')->name('users.store');
-        Route::put('/users/status/change/{id}', 'statusChange')->name('users.status.change');
-        Route::get('/users/edit/{id}', 'edit')->name('users.edit');
+        Route::put('/users/status/change/{id}', 'statusChange')->name('users.status.change')->middleware(['permission:users-status-change']);
+        Route::get('/users/edit/{id}', 'edit')->name('users.edit')->middleware(['permission:users-edit']);
         Route::post('/users/update', 'update')->name('users.update');
     });
 });
@@ -81,6 +81,6 @@ Route::group(['as' => 'advisor.', 'prefix' => 'advisor', 'middleware' => ['auth'
 
     ## Dashboard
     Route::controller(AdvisorDashboardController::class)->group(function () {
-        Route::get('/dashboard', 'index')->name('dashboard');
+        Route::get('/dashboard', 'advisor')->name('dashboard');
     });
 });

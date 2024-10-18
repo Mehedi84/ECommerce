@@ -48,7 +48,7 @@
                             <li><a href="{{ route(\Request::segment(1) . '.roles') }}">Roles</a></li>
                             @endcan
 
-                            @can('user-list')
+                            @can('users-show')
                             <li><a href="{{ route(\Request::segment(1) . '.users') }}">Users</a></li>
                             @endcan
                         </ul>

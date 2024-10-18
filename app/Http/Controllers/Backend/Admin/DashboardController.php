@@ -29,8 +29,34 @@ class DashboardController extends Controller
     public function index()
     {
         //define breadcrumb 
-        $breadCrumb = $this->utility_service->breadCrumb('Dashboard','Dashboard', 'List', 'home');
+        $breadCrumb = $this->utility_service->breadCrumb('Dashboard', 'Dashboard', 'List', 'home');
 
         return view('backend.admin.dashboard', ['breadCrumb' => $breadCrumb]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function advisor()
+    {
+        //define breadcrumb 
+        $breadCrumb = $this->utility_service->breadCrumb('Dashboard', 'Dashboard', 'List', 'home');
+
+        return view('backend.admin.dashboard-advisor', ['breadCrumb' => $breadCrumb]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function supervisor()
+    {
+        //define breadcrumb 
+        $breadCrumb = $this->utility_service->breadCrumb('Dashboard', 'Dashboard', 'List', 'home');
+
+        return view('backend.admin.dashboard-supervisor', ['breadCrumb' => $breadCrumb]);
     }
 }

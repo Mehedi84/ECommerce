@@ -45,46 +45,46 @@
 <!--start indivisual pages javascript -->
 @push('js')
 <script>
-$(document).ready(function() {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.data-table').DataTable({
+            processing: true,
+            serverSide: true,
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            ajax: "{{ route(Request::segment(1) . '.roles') }}",
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'route_segment',
+                    name: 'route_segment'
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'permissions',
+                    name: 'permissions'
+                },
+                @can('role-edit') {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+                @endcan
+            ]
+        });
     });
-    $('.data-table').DataTable({
-        processing: true,
-        serverSide: true,
-        lengthMenu: [
-            [10, 25, 50, 100, -1],
-            [10, 25, 50, 100, "All"]
-        ],
-        ajax: "{{ route(Request::segment(1) . '.roles') }}",
-        columns: [{
-                data: 'id',
-                name: 'id'
-            },
-            {
-                data: 'route_segment',
-                name: 'route_segment'
-            },
-            {
-                data: 'name',
-                name: 'name'
-            },
-            {
-                data: 'permissions',
-                name: 'permissions'
-            },
-            @can('role-edit') {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false
-            },
-            @endcan
-        ]
-    });
-});
 </script>
 @endpush
 <!--end indivisual pages javascript -->
