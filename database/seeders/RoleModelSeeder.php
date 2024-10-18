@@ -16,7 +16,8 @@ class RoleModelSeeder extends Seeder
     {
         $data = [
             ['name' => 'admin', 'route_segment' => 'admin'],
-            ['name' => 'student', 'route_segment' => 'student'],
+            ['name' => 'supervisor', 'route_segment' => 'supervisor'],
+            ['name' => 'advisor', 'route_segment' => 'advisor'],
         ];
 
         foreach ($data as $item) {

@@ -34,8 +34,8 @@ class UserModelSeeder extends Seeder
         $users3 = [
             [
                 'code' => 'EC-10002',
-                'name' => 'Student',
-                'email' => 'student@gmail.com',
+                'name' => 'Supervisor',
+                'email' => 'supervisor@gmail.com',
                 'password' => Hash::make($password),
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -46,6 +46,23 @@ class UserModelSeeder extends Seeder
         foreach ($users3 as $key => $user) {
             $user = User::create($user);
             $user->assignRole(2);
+        }
+
+        $users3 = [
+            [
+                'code' => 'EC-10003',
+                'name' => 'Advisor',
+                'email' => 'advisor@gmail.com',
+                'password' => Hash::make($password),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ];
+
+
+        foreach ($users3 as $key => $user) {
+            $user = User::create($user);
+            $user->assignRole(3);
         }
     }
 }

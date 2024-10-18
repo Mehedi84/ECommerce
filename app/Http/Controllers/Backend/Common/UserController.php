@@ -73,8 +73,6 @@ class UserController extends Controller
                 ->addColumn('actions', function ($user_list) {
                     $btn = "";
                     $btn = $btn . '<a href="javascript:void(0)" onclick="editModal(' . $user_list->id . ')" class="action-btn mx-2"><i class="bi bi-pen"></i></a>';
-
-
                     if ($user_list->is_active == '1') {
                         $btn .= "<a href='javascript:void(0)' class='text-danger p-1' onclick='changeStatus(" . $user_list->id . ")' title='Inactive'><i class='bi bi-x-square margin-right-0'></i></a>";
                     } else {

@@ -5,7 +5,8 @@ use App\Http\Controllers\Backend\Auth\LoginController;
 use App\Http\Controllers\Backend\Common\RoleController;
 use App\Http\Controllers\Backend\Common\UserController;
 use App\Http\Controllers\Backend\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Backend\Admin\DashboardController as StudentDashboardController;
+use App\Http\Controllers\Backend\Admin\DashboardController as SupervisorDashboardController;
+use App\Http\Controllers\Backend\Admin\DashboardController as AdvisorDashboardController;
 
 /**
  * All web routes
@@ -49,10 +50,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'i
     });
 });
 
-Route::group(['as' => 'student.', 'prefix' => 'student', 'middleware' => ['auth', 'is_student']], function () {
+Route::group(['as' => 'supervisor.', 'prefix' => 'supervisor', 'middleware' => ['auth', 'is_supervisor']], function () {
 
     ## Dashboard
-    Route::controller(StudentDashboardController::class)->group(function () {
+    Route::controller(SupervisorDashboardController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
     });
 
@@ -64,5 +65,22 @@ Route::group(['as' => 'student.', 'prefix' => 'student', 'middleware' => ['auth'
         Route::get('/roles/edit/{id}', 'edit')->name('roles.edit')->middleware(['permission:role-edit']);
         Route::post('/roles/update/{id}', 'update')->name('roles.update');
         Route::get('/roles/destroy/{id}', 'destroy')->name('roles.destroy');
+    });
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/users', 'index')->name('users');
+        Route::get('/users/create', 'create')->name('users.create');
+        Route::get('/show', 'show')->name('show');
+        Route::post('/users/store', 'store')->name('users.store');
+        Route::put('/users/status/change/{id}', 'statusChange')->name('users.status.change');
+        Route::get('/users/edit/{id}', 'edit')->name('users.edit');
+        Route::post('/users/update', 'update')->name('users.update');
+    });
+});
+
+Route::group(['as' => 'advisor.', 'prefix' => 'advisor', 'middleware' => ['auth', 'is_advisor']], function () {
+
+    ## Dashboard
+    Route::controller(AdvisorDashboardController::class)->group(function () {
+        Route::get('/dashboard', 'index')->name('dashboard');
     });
 });

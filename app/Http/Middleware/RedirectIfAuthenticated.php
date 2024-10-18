@@ -24,8 +24,10 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::check() && (Auth::user()->getRoleNames()[0] == 'admin')) {
                 return redirect('admin/dashboard');
-            } elseif (Auth::check() &&  (Auth::user()->getRoleNames()[0] == 'student')) {
-                return redirect('student/dashboard');
+            } elseif (Auth::check() &&  (Auth::user()->getRoleNames()[0] == 'supervisor')) {
+                return redirect('supervisor/dashboard');
+            } elseif (Auth::check() &&  (Auth::user()->getRoleNames()[0] == 'advisor')) {
+                return redirect('advisor/dashboard');
             } else {
                 return $next($request);
             }
