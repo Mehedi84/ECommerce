@@ -43,7 +43,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         //define breadcrumb 
-        $breadCrumb = $this->utility_service->breadCrumb('Role', 'Role', 'List', 'role');
+        $breadCrumb = $this->utility_service->breadCrumb('Role List', 'role');
 
         try {
 
@@ -151,7 +151,7 @@ class RoleController extends Controller
     public function edit(string $id)
     {
         try {
-            
+
             //define breadcrumb 
             $breadCrumb = $this->utility_service->breadCrumb('Role', 'Role', 'Edit', 'role');
 

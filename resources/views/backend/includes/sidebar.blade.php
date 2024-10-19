@@ -42,7 +42,7 @@
                             <strong class="custom-sidebar-stroke-icon">
                                 <i class="{{ _icons('setting') }}"></i>
                             </strong>
-                            <span class="custom-sidebar-list-text"> Setting</span></a>
+                            <span class="custom-sidebar-list-text"> Settings</span></a>
                         <ul class="sidebar-submenu">
                             @can('role-list')
                             <li><a href="{{ route(\Request::segment(1) . '.roles') }}">Roles</a></li>
@@ -50,6 +50,25 @@
 
                             @can('users-show')
                             <li><a href="{{ route(\Request::segment(1) . '.users') }}">Users</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                    @endcan
+
+                    @can('setting-menu-list')
+                    <li class="sidebar-list"></i><a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                            <strong class="custom-sidebar-stroke-icon">
+                                <i class="{{ _icons('product') }}"></i>
+                            </strong>
+                            <span class="custom-sidebar-list-text"> Products</span></a>
+                        <ul class="sidebar-submenu">
+                            @can('role-list')
+                            <li><a href="{{ route(\Request::segment(1) . '.product.category.type') }}">Product Category
+                                    Type</a></li>
+                            @endcan
+
+                            @can('users-show')
+                            <li><a href="{{ route(\Request::segment(1) . '.users') }}">Product Category</a></li>
                             @endcan
                         </ul>
                     </li>

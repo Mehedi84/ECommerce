@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 /**
- * UtilityService
- * @author Md. Amzad Hossain Jacky <amzadhossain1922@gmail.com>
+ * UsersService
+ * @author Mehedi Hasan Shamim <sh158399@gmail.com>
  */
 class UsersService
 {

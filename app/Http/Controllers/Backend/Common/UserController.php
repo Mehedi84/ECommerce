@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $breadCrumb = $this->utility_service->breadCrumb('User', 'User', 'List', 'user');
+        $breadCrumb = $this->utility_service->breadCrumb('Users List', 'user');
         return view('backend.common.users.index', ['breadCrumb' => $breadCrumb]);
     }
 

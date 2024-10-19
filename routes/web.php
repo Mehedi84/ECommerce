@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Auth\LoginController;
 use App\Http\Controllers\Backend\Common\RoleController;
 use App\Http\Controllers\Backend\Common\UserController;
+use App\Http\Controllers\Backend\Common\ProductCategoryTypeController;
 use App\Http\Controllers\Backend\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Backend\Admin\DashboardController as SupervisorDashboardController;
 use App\Http\Controllers\Backend\Admin\DashboardController as AdvisorDashboardController;
+use App\Http\Controllers\Backend\Admin\DashboardController as SupervisorDashboardController;
 
 /**
  * All web routes
@@ -39,6 +40,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'i
         Route::get('/roles/destroy/{id}', 'destroy')->name('roles.destroy');
     });
 
+    ## Users
     Route::controller(UserController::class)->group(function () {
         Route::get('/users', 'index')->name('users')->middleware(['permission:role-list']);
         Route::get('/users/create', 'create')->name('users.create');
@@ -47,6 +49,17 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'i
         Route::put('/users/status/change/{id}', 'statusChange')->name('users.status.change');
         Route::get('/users/edit/{id}', 'edit')->name('users.edit');
         Route::post('/users/update', 'update')->name('users.update');
+    });
+
+    ## Product Category Type
+    Route::controller(ProductCategoryTypeController::class)->group(function () {
+        Route::get('/product/category/type', 'index')->name('product.category.type');
+        Route::get('/product/category/type/create', 'create')->name('product.category.type.create');
+        Route::post('/product/category/type/store', 'store')->name('product.category.type.store');
+        Route::get('/product/category/type/show', 'show')->name('product.category.type.show');
+        Route::put('/product/category/type/status/change/{id}', 'statusChange')->name('product.category.type.status.change');
+        Route::get('/product/category/type/edit/{id}', 'edit')->name('product.category.type.edit');
+        Route::post('/product/category/type/update', 'update')->name('product.category.type.update');
     });
 });
 

@@ -6,9 +6,7 @@ use Illuminate\View\Component;
 
 class Breadcrumb extends Component
 {
-    public $title;
     public $item;
-    public $itemActive;
     public $itemMethod;
     public $itemIcon;
 
@@ -19,9 +17,7 @@ class Breadcrumb extends Component
      */
     public function __construct($breadCrumb)
     {
-        $this->title = $breadCrumb['title'];
         $this->item = $breadCrumb['item'];
-        $this->itemActive = $breadCrumb['itemActive'];
         $this->itemMethod = $breadCrumb['itemMethod'];
         $this->itemIcon = $breadCrumb['itemIcon'];
     }
