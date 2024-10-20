@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Auth\LoginController;
 use App\Http\Controllers\Backend\Common\RoleController;
 use App\Http\Controllers\Backend\Common\UserController;
-use App\Http\Controllers\Backend\Common\ProductCategoryTypeController;
+use App\Http\Controllers\Backend\Common\ProductCategoryController;
+use App\Http\Controllers\Backend\Common\ProductSubCategoryController;
 use App\Http\Controllers\Backend\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Backend\Admin\DashboardController as AdvisorDashboardController;
 use App\Http\Controllers\Backend\Admin\DashboardController as SupervisorDashboardController;
@@ -51,15 +52,26 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'i
         Route::post('/users/update', 'update')->name('users.update');
     });
 
-    ## Product Category Type
-    Route::controller(ProductCategoryTypeController::class)->group(function () {
-        Route::get('/product/category/type', 'index')->name('product.category.type');
-        Route::get('/product/category/type/create', 'create')->name('product.category.type.create');
-        Route::post('/product/category/type/store', 'store')->name('product.category.type.store');
-        Route::get('/product/category/type/show', 'show')->name('product.category.type.show');
-        Route::put('/product/category/type/status/change/{id}', 'statusChange')->name('product.category.type.status.change');
-        Route::get('/product/category/type/edit/{id}', 'edit')->name('product.category.type.edit');
-        Route::post('/product/category/type/update', 'update')->name('product.category.type.update');
+    ## Product Category
+    Route::controller(ProductCategoryController::class)->group(function () {
+        Route::get('/product/category', 'index')->name('product.category');
+        Route::get('/product/category/create', 'create')->name('product.category.create');
+        Route::post('/product/category/store', 'store')->name('product.category.store');
+        Route::get('/product/category/show', 'show')->name('product.category.show');
+        Route::put('/product/category/status/change/{id}', 'statusChange')->name('product.category.status.change');
+        Route::get('/product/category/edit/{id}', 'edit')->name('product.category.edit');
+        Route::post('/product/category/update', 'update')->name('product.category.update');
+    });
+
+    ## Product Sub Category
+    Route::controller(ProductSubCategoryController::class)->group(function () {
+        Route::get('/product/subcategory', 'index')->name('product.subcategory');
+        Route::get('/product/subcategory/create', 'create')->name('product.subcategory.create');
+        Route::post('/product/subcategory/store', 'store')->name('product.subcategory.store');
+        Route::get('/product/subcategory/show', 'show')->name('product.subcategory.show');
+        Route::put('/product/subcategory/status/change/{id}', 'statusChange')->name('product.subcategory.status.change');
+        Route::get('/product/subcategory/edit/{id}', 'edit')->name('product.subcategory.edit');
+        Route::post('/product/subcategory/update', 'update')->name('product.subcategory.update');
     });
 });
 

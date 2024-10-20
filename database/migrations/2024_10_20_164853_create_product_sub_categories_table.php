@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductCategoryTypesTable extends Migration
+class CreateProductSubCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateProductCategoryTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_category_types', function (Blueprint $table) {
+        Schema::create('product_sub_categories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_categories_id')->nullable()->comment('Belongs to product_categories Table')->references('id')->on('product_categories');
             $table->string('name')->unique();
             $table->boolean('is_active')->default(1);
             $table->timestamps();
@@ -28,6 +29,6 @@ class CreateProductCategoryTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_category_types');
+        Schema::dropIfExists('product_sub_categories');
     }
 }

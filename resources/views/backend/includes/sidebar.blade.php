@@ -63,12 +63,13 @@
                             <span class="custom-sidebar-list-text"> Products</span></a>
                         <ul class="sidebar-submenu">
                             @can('role-list')
-                            <li><a href="{{ route(\Request::segment(1) . '.product.category.type') }}">Product Category
-                                    Type</a></li>
+                            <li><a href="{{ route(\Request::segment(1) . '.product.category') }}">Product Category</a>
+                            </li>
                             @endcan
 
                             @can('users-show')
-                            <li><a href="{{ route(\Request::segment(1) . '.users') }}">Product Category</a></li>
+                            <li><a href="{{ route(\Request::segment(1) . '.product.subcategory') }}">Product Sub
+                                    Category</a></li>
                             @endcan
                         </ul>
                     </li>
