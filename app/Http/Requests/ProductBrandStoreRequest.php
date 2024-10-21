@@ -5,11 +5,11 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * ProductSubCategoryUpdateRequest
+ * ProductBrandController
  * @author Mehedi Hasan Shamim <sh158399@gmail.com>
  */
 
-class ProductSubCategoryUpdateRequest extends FormRequest
+class ProductBrandStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,8 +29,7 @@ class ProductSubCategoryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
-            'product_categories_id' => ['required'],
+            'name' => ['required', 'max:255', 'string', 'unique:product_brands'],
         ];
     }
 }

@@ -2,14 +2,15 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * ProductSubCategoryUpdateRequest
+ * ProductBrandController
  * @author Mehedi Hasan Shamim <sh158399@gmail.com>
  */
 
-class ProductSubCategoryUpdateRequest extends FormRequest
+class ProductBrandUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,8 +30,12 @@ class ProductSubCategoryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
-            'product_categories_id' => ['required'],
+            'name' => [
+                'required',
+                'max:250',
+                'string',
+                Rule::unique('product_brands', 'name')->ignore($this->id, 'id')
+            ]
         ];
     }
 }

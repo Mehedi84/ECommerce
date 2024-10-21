@@ -5,6 +5,11 @@ namespace App\Http\Requests;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * ProductCategoryUpdateRequest
+ * @author Mehedi Hasan Shamim <sh158399@gmail.com>
+ */
+
 class ProductCategoryUpdateRequest extends FormRequest
 {
     /**

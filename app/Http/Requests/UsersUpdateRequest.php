@@ -5,6 +5,11 @@ namespace App\Http\Requests;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * UsersUpdateRequest
+ * @author Mehedi Hasan Shamim <sh158399@gmail.com>
+ */
+
 class UsersUpdateRequest extends FormRequest
 {
     /**
@@ -24,13 +29,6 @@ class UsersUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        // return [
-        //     'code' => 'required|max:20|string|' . Rule::unique('users', 'code')->ignore($this->id, 'id'),
-        //     'name' => ['required', 'max:255', 'string'],
-        //     'email' => 'required|max:255|string|' . Rule::unique('users', 'email')->ignore($this->id, 'id'),
-        //     'mobile' => 'required|max:20|string|' . Rule::unique('users', 'mobile')->ignore($this->id, 'id'),
-        // ];
-
         return [
             'code' => [
                 'required',

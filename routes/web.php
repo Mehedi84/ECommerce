@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Auth\LoginController;
 use App\Http\Controllers\Backend\Common\RoleController;
 use App\Http\Controllers\Backend\Common\UserController;
+use App\Http\Controllers\Backend\Common\ProductBrandController;
 use App\Http\Controllers\Backend\Common\ProductCategoryController;
 use App\Http\Controllers\Backend\Common\ProductSubCategoryController;
+use App\Http\Controllers\Backend\Common\ProductChildCategoryController;
 use App\Http\Controllers\Backend\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Backend\Admin\DashboardController as AdvisorDashboardController;
 use App\Http\Controllers\Backend\Admin\DashboardController as SupervisorDashboardController;
@@ -43,35 +45,57 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'i
 
     ## Users
     Route::controller(UserController::class)->group(function () {
-        Route::get('/users', 'index')->name('users')->middleware(['permission:role-list']);
-        Route::get('/users/create', 'create')->name('users.create');
-        Route::get('/users/show', 'show')->name('users.show');
+        Route::get('/users', 'index')->name('users')->middleware(['permission:users-list']);
+        Route::get('/users/create', 'create')->name('users.create')->middleware(['permission:users-create']);
+        Route::get('/users/show', 'show')->name('users.show')->middleware(['permission:users-show']);
         Route::post('/users/store', 'store')->name('users.store');
-        Route::put('/users/status/change/{id}', 'statusChange')->name('users.status.change');
-        Route::get('/users/edit/{id}', 'edit')->name('users.edit');
+        Route::put('/users/status/change/{id}', 'statusChange')->name('users.status.change')->middleware(['permission:users-status-change']);
+        Route::get('/users/edit/{id}', 'edit')->name('users.edit')->middleware(['permission:users-edit']);
         Route::post('/users/update', 'update')->name('users.update');
     });
 
     ## Product Category
     Route::controller(ProductCategoryController::class)->group(function () {
         Route::get('/product/category', 'index')->name('product.category');
-        Route::get('/product/category/create', 'create')->name('product.category.create');
+        Route::get('/product/category/create', 'create')->name('product.category.create')->middleware(['permission:product-category-show']);
         Route::post('/product/category/store', 'store')->name('product.category.store');
-        Route::get('/product/category/show', 'show')->name('product.category.show');
-        Route::put('/product/category/status/change/{id}', 'statusChange')->name('product.category.status.change');
-        Route::get('/product/category/edit/{id}', 'edit')->name('product.category.edit');
+        Route::get('/product/category/show', 'show')->name('product.category.show')->middleware(['permission:product-subcategory-create']);
+        Route::put('/product/category/status/change/{id}', 'statusChange')->name('product.category.status.change')->middleware(['permission:product-category-status-change']);
+        Route::get('/product/category/edit/{id}', 'edit')->name('product.category.edit')->middleware(['permission:product-category-edit']);
         Route::post('/product/category/update', 'update')->name('product.category.update');
     });
 
     ## Product Sub Category
     Route::controller(ProductSubCategoryController::class)->group(function () {
         Route::get('/product/subcategory', 'index')->name('product.subcategory');
-        Route::get('/product/subcategory/create', 'create')->name('product.subcategory.create');
+        Route::get('/product/subcategory/create', 'create')->name('product.subcategory.create')->middleware(['permission:product-subcategory-create']);
         Route::post('/product/subcategory/store', 'store')->name('product.subcategory.store');
-        Route::get('/product/subcategory/show', 'show')->name('product.subcategory.show');
-        Route::put('/product/subcategory/status/change/{id}', 'statusChange')->name('product.subcategory.status.change');
-        Route::get('/product/subcategory/edit/{id}', 'edit')->name('product.subcategory.edit');
+        Route::get('/product/subcategory/show', 'show')->name('product.subcategory.show')->middleware(['permission:product-subcategory-create']);
+        Route::put('/product/subcategory/status/change/{id}', 'statusChange')->name('product.subcategory.status.change')->middleware(['permission:product-subcategory-create']);
+        Route::get('/product/subcategory/edit/{id}', 'edit')->name('product.subcategory.edit')->middleware(['permission:product-subcategory-create']);
         Route::post('/product/subcategory/update', 'update')->name('product.subcategory.update');
+    });
+
+    ## Product Child Category
+    Route::controller(ProductChildCategoryController::class)->group(function () {
+        Route::get('/product/child/category', 'index')->name('product.child.category');
+        Route::get('/product/child/category/create', 'create')->name('product.child.category.create')->middleware(['permission:product-subcategory-create']);
+        Route::post('/product/child/category/store', 'store')->name('product.child.category.store');
+        Route::get('/product/child/category/show', 'show')->name('product.child.category.show')->middleware(['permission:product-subcategory-create']);
+        Route::put('/product/child/category/status/change/{id}', 'statusChange')->name('product.child.category.status.change')->middleware(['permission:product-subcategory-create']);
+        Route::get('/product/child/category/edit/{id}', 'edit')->name('product.child.category.edit')->middleware(['permission:product-subcategory-create']);
+        Route::post('/product/child/category/update', 'update')->name('product.child.category.update');
+    });
+
+    ## Product Brand
+    Route::controller(ProductBrandController::class)->group(function () {
+        Route::get('/product/brand', 'index')->name('product.brand');
+        Route::get('/product/brand/create', 'create')->name('product.brand.create')->middleware(['permission:product-brand-show']);
+        Route::post('/product/brand/store', 'store')->name('product.brand.store');
+        Route::get('/product/brand/show', 'show')->name('product.brand.show')->middleware(['permission:product-subbrand-create']);
+        Route::put('/product/brand/status/change/{id}', 'statusChange')->name('product.brand.status.change')->middleware(['permission:product-brand-status-change']);
+        Route::get('/product/brand/edit/{id}', 'edit')->name('product.brand.edit')->middleware(['permission:product-brand-edit']);
+        Route::post('/product/brand/update', 'update')->name('product.brand.update');
     });
 });
 
@@ -99,6 +123,16 @@ Route::group(['as' => 'supervisor.', 'prefix' => 'supervisor', 'middleware' => [
         Route::put('/users/status/change/{id}', 'statusChange')->name('users.status.change')->middleware(['permission:users-status-change']);
         Route::get('/users/edit/{id}', 'edit')->name('users.edit')->middleware(['permission:users-edit']);
         Route::post('/users/update', 'update')->name('users.update');
+    });
+    ## Product Category
+    Route::controller(ProductCategoryController::class)->group(function () {
+        Route::get('/product/category', 'index')->name('product.category');
+        Route::get('/product/category/create', 'create')->name('product.category.create')->middleware(['permission:product-category-show']);
+        Route::post('/product/category/store', 'store')->name('product.category.store');
+        Route::get('/product/category/show', 'show')->name('product.category.show')->middleware(['permission:product-subcategory-create']);
+        Route::put('/product/category/status/change/{id}', 'statusChange')->name('product.category.status.change')->middleware(['permission:product-category-status-change']);
+        Route::get('/product/category/edit/{id}', 'edit')->name('product.category.edit')->middleware(['permission:product-category-edit']);
+        Route::post('/product/category/update', 'update')->name('product.category.update');
     });
 });
 

@@ -7,21 +7,23 @@ use App\Models\ProductCategory;
 use App\Services\UtilityService;
 use App\Models\ProductSubCategory;
 use App\Http\Controllers\Controller;
+use App\Models\ProductChildCategory;
 use Yajra\DataTables\Facades\DataTables;
-use App\Services\ProductSubCategoryService;
-use App\Http\Requests\ProductSubCategoryStoreRequest;
-use App\Http\Requests\ProductSubCategoryUpdateRequest;
+use App\Services\ProductChildCategoryService;
+use App\Http\Requests\ProductChildCategoryStoreRequest;
+use App\Http\Requests\ProductChildCategoryUpdateRequest;
 
 /**
- * ProductCategoryController
+ * ProductChildCategoryController
  * @author Mehedi Hasan Shamim <sh158399@gmail.com>
  */
 
-class ProductSubCategoryController extends Controller
+
+class ProductChildCategoryController extends Controller
 {
 
     private UtilityService $utility_service;
-    private ProductSubCategoryService $product_sub_category_service;
+    private ProductChildCategoryService $product_child_category_service;
 
     /**
      * constructor method
@@ -30,7 +32,7 @@ class ProductSubCategoryController extends Controller
     public function __construct()
     {
         $this->utility_service = new UtilityService();
-        $this->product_sub_category_service = new ProductSubCategoryService();
+        $this->product_child_category_service = new ProductChildCategoryService();
     }
 
     /**
@@ -40,8 +42,8 @@ class ProductSubCategoryController extends Controller
      */
     public function index()
     {
-        $breadCrumb = $this->utility_service->breadCrumb('Product Sub Category', 'tasks');
-        return view('backend.common.productSubCategory.index', ['breadCrumb' => $breadCrumb]);
+        $breadCrumb = $this->utility_service->breadCrumb('Product Child Category', 'tasks');
+        return view('backend.common.productChildCategory.index', ['breadCrumb' => $breadCrumb]);
     }
 
     /**
@@ -51,8 +53,8 @@ class ProductSubCategoryController extends Controller
      */
     public function create()
     {
-        $resultData = ProductCategory::where('is_active', '1')->get();
-        return view('backend.common.productSubCategory.create', compact(['resultData']))->render();
+        $productSubCategorys = ProductSubCategory::where('is_active', '1')->get();
+        return view('backend.common.productChildCategory.create', compact(['productSubCategorys']))->render();
     }
 
     /**
@@ -61,10 +63,10 @@ class ProductSubCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductSubCategoryStoreRequest $request)
+    public function store(ProductChildCategoryStoreRequest $request)
     {
         $data = $request->all();
-        return $this->product_sub_category_service->get_sub_category_store_Data($data);
+        return $this->product_child_category_service->get_child_category_store_Data($data);
     }
 
     /**
@@ -76,7 +78,7 @@ class ProductSubCategoryController extends Controller
     public function show(Request $request)
     {
         if ($request->ajax()) {
-            $resultData = $this->product_sub_category_service->get_Product_sub_category_List_Data();
+            $resultData = $this->product_child_category_service->get_Product_child_category_List_Data();
             return Datatables::of($resultData)
                 ->addColumn('actions', function ($resultData) {
                     $btn = "";
@@ -96,6 +98,7 @@ class ProductSubCategoryController extends Controller
         }
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -105,11 +108,9 @@ class ProductSubCategoryController extends Controller
     public function statusChange($id)
     {
         if (!empty($id)) {
-            return $this->product_sub_category_service->get_product_sub_category_status_change($id);
+            return $this->product_child_category_service->get_product_child_category_status_change($id);
         }
     }
-
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -118,9 +119,9 @@ class ProductSubCategoryController extends Controller
      */
     public function edit($id)
     {
-        $categorys = ProductCategory::where('is_active', '1')->get();
-        $resultData = ProductSubCategory::find($id);
-        return view('backend.common.productSubCategory.update', compact(['resultData', 'categorys']))->render();
+        $subCategorys = ProductSubCategory::where('is_active', '1')->get();
+        $resultData = ProductChildCategory::find($id);
+        return view('backend.common.productChildCategory.update', compact(['resultData', 'subCategorys']))->render();
     }
 
     /**
@@ -130,10 +131,10 @@ class ProductSubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductSubCategoryUpdateRequest $request)
+    public function update(ProductChildCategoryUpdateRequest $request)
     {
         $data = $request->all();
-        return $this->product_sub_category_service->get_product_sub_category_Update_Data($data);
+        return $this->product_child_category_service->get_product_child_category_Update_Data($data);
     }
 
     /**

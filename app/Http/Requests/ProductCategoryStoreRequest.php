@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * ProductCategoryStoreRequest
+ * @author Mehedi Hasan Shamim <sh158399@gmail.com>
+ */
+
 class ProductCategoryStoreRequest extends FormRequest
 {
     /**

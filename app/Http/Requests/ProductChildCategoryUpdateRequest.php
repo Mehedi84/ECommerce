@@ -5,11 +5,11 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * ProductSubCategoryUpdateRequest
+ * ProductChildCategoryUpdateRequest
  * @author Mehedi Hasan Shamim <sh158399@gmail.com>
  */
 
-class ProductSubCategoryUpdateRequest extends FormRequest
+class ProductChildCategoryUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,7 +30,7 @@ class ProductSubCategoryUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'product_categories_id' => ['required'],
+            'product_sub_categories_id' => ['required'],
         ];
     }
 }

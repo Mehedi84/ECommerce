@@ -47,6 +47,43 @@ class PermissionService
                     ['name' => 'users-status-change', 'checked' => 1],
                 ],
             ],
+            'product' => [
+                'parent_checked' => 1,
+                'label' => 'product menu permissions',
+                'list' => [
+                    ['name' => 'product-menu-list', 'checked' => 1],
+                ],
+            ],
+            'Product category' => [
+                'parent_checked' => 1,
+                'label' => 'Product category permissions',
+                'list' => [
+                    ['name' => 'product-category-show', 'checked' => 1],
+                    ['name' => 'product-category-create', 'checked' => 1],
+                    ['name' => 'product-category-edit', 'checked' => 1],
+                    ['name' => 'product-category-status-change', 'checked' => 1],
+                ],
+            ],
+            'Product Sub category' => [
+                'parent_checked' => 1,
+                'label' => 'Product Sub category permissions',
+                'list' => [
+                    ['name' => 'product-subcategory-show', 'checked' => 1],
+                    ['name' => 'product-subcategory-create', 'checked' => 1],
+                    ['name' => 'product-subcategory-edit', 'checked' => 1],
+                    ['name' => 'product-subcategory-status-change', 'checked' => 1],
+                ],
+            ],
+            'Product Child category' => [
+                'parent_checked' => 1,
+                'label' => 'Product Child category permissions',
+                'list' => [
+                    ['name' => 'product-child-category-show', 'checked' => 1],
+                    ['name' => 'product-child-category-create', 'checked' => 1],
+                    ['name' => 'product-child-category-edit', 'checked' => 1],
+                    ['name' => 'product-child-category-status-change', 'checked' => 1],
+                ],
+            ],
         ];
     }
 

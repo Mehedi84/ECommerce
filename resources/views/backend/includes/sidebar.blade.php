@@ -55,21 +55,32 @@
                     </li>
                     @endcan
 
-                    @can('setting-menu-list')
+                    @can('product-menu-list')
                     <li class="sidebar-list"></i><a class="sidebar-link sidebar-title" href="javascript:void(0)">
                             <strong class="custom-sidebar-stroke-icon">
                                 <i class="{{ _icons('product') }}"></i>
                             </strong>
                             <span class="custom-sidebar-list-text"> Products</span></a>
                         <ul class="sidebar-submenu">
-                            @can('role-list')
+                            @can('product-category-show')
                             <li><a href="{{ route(\Request::segment(1) . '.product.category') }}">Product Category</a>
                             </li>
                             @endcan
 
-                            @can('users-show')
+                            @can('product-subcategory-show')
                             <li><a href="{{ route(\Request::segment(1) . '.product.subcategory') }}">Product Sub
                                     Category</a></li>
+                            @endcan
+
+
+                            @can('product-child-category-show')
+                            <li><a href="{{ route(\Request::segment(1) . '.product.child.category') }}">Product Child
+                                    Category</a></li>
+                            @endcan
+
+                            @can('product-brand-show')
+                            <li><a href="{{ route(\Request::segment(1) . '.product.brand') }}">Product Brand</a>
+                            </li>
                             @endcan
                         </ul>
                     </li>
