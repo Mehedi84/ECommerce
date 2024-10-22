@@ -51,6 +51,10 @@
                             @can('users-show')
                             <li><a href="{{ route(\Request::segment(1) . '.users') }}">Users</a></li>
                             @endcan
+
+                            @can('users-show')
+                            <li><a href="{{ route(\Request::segment(1) . '.coupon') }}">Coupons</a></li>
+                            @endcan
                         </ul>
                     </li>
                     @endcan

@@ -84,6 +84,16 @@ class PermissionService
                     ['name' => 'product-child-category-status-change', 'checked' => 1],
                 ],
             ],
+            'Product brand' => [
+                'parent_checked' => 1,
+                'label' => 'Product brand permissions',
+                'list' => [
+                    ['name' => 'product-brand-show', 'checked' => 1],
+                    ['name' => 'product-brand-create', 'checked' => 1],
+                    ['name' => 'product-brand-edit', 'checked' => 1],
+                    ['name' => 'product-brand-status-change', 'checked' => 1],
+                ],
+            ],
         ];
     }
 

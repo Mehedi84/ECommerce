@@ -2,40 +2,40 @@
 
 namespace App\Services;
 
-use App\Models\ProductBrand;
+use App\Models\Coupon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 /**
- * ProductBrandService
+ * CouponService
  * @author Mehedi Hasan Shamim <sh158399@gmail.com>
  */
-class ProductBrandService
+class CouponService
 {
 
-    public function get_Product_brand_List_Data()
+    public function get_coupon_List_Data()
     {
-        $ProductBrand = ProductBrand::get();
-        return $ProductBrand;
+        $Coupon = Coupon::get();
+        return $Coupon;
     }
 
-    public function get_brand_store_Data($datas)
+    public function get_coupon_store_Data($datas)
     {
-        $store = ProductBrand::create([
+        $store = Coupon::create([
             'name' => $datas['name'],
         ]);
 
         ## return message
         if ($store) {
-            return response()->json(['status' => '200', 'msg' => 'Brand Inserted!!']);
+            return response()->json(['status' => '200', 'msg' => 'Coupon Inserted!!']);
         }
     }
 
-    public function get_product_brand_status_change($id)
+    public function get_coupon_status_change($id)
     {
-        $findData = ProductBrand::find($id);
+        $findData = Coupon::find($id);
         $status = $findData->is_active == '1' ? '0' : '1';
-        $resultData = ProductBrand::where('id', $id)
+        $resultData = Coupon::where('id', $id)
             ->update(['is_active' => $status]);
 
         ## return message
@@ -44,16 +44,16 @@ class ProductBrandService
         }
     }
 
-    public function get_product_brand_Update_Data($datas)
+    public function get_coupon_Update_Data($datas)
     {
         $id = $datas['id'];
-        $update = ProductBrand::where('id', $id)
+        $update = Coupon::where('id', $id)
             ->update([
                 'name' => $datas['name'],
             ]);
         ## return message
         if ($update) {
-            return response()->json(['status' => '200', 'msg' => 'Brand Updated!!']);
+            return response()->json(['status' => '200', 'msg' => 'Coupon Updated!!']);
         }
     }
 }

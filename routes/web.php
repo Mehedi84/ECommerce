@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Auth\LoginController;
 use App\Http\Controllers\Backend\Common\RoleController;
 use App\Http\Controllers\Backend\Common\UserController;
+use App\Http\Controllers\Backend\Common\CouponController;
 use App\Http\Controllers\Backend\Common\ProductBrandController;
 use App\Http\Controllers\Backend\Common\ProductCategoryController;
 use App\Http\Controllers\Backend\Common\ProductSubCategoryController;
@@ -92,10 +93,21 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'i
         Route::get('/product/brand', 'index')->name('product.brand');
         Route::get('/product/brand/create', 'create')->name('product.brand.create')->middleware(['permission:product-brand-show']);
         Route::post('/product/brand/store', 'store')->name('product.brand.store');
-        Route::get('/product/brand/show', 'show')->name('product.brand.show')->middleware(['permission:product-subbrand-create']);
+        Route::get('/product/brand/show', 'show')->name('product.brand.show')->middleware(['permission:product-brand-create']);
         Route::put('/product/brand/status/change/{id}', 'statusChange')->name('product.brand.status.change')->middleware(['permission:product-brand-status-change']);
         Route::get('/product/brand/edit/{id}', 'edit')->name('product.brand.edit')->middleware(['permission:product-brand-edit']);
         Route::post('/product/brand/update', 'update')->name('product.brand.update');
+    });
+
+    ## Coupon
+    Route::controller(CouponController::class)->group(function () {
+        Route::get('/coupon', 'index')->name('coupon');
+        Route::get('/coupon/create', 'create')->name('coupon.create')->middleware(['permission:coupon-show']);
+        Route::post('/coupon/store', 'store')->name('coupon.store');
+        Route::get('/coupon/show', 'show')->name('coupon.show')->middleware(['permission:coupon-create']);
+        Route::put('/coupon/status/change/{id}', 'statusChange')->name('coupon.status.change')->middleware(['permission:coupon-status-change']);
+        Route::get('/coupon/edit/{id}', 'edit')->name('coupon.edit')->middleware(['permission:coupon-edit']);
+        Route::post('/coupon/update', 'update')->name('coupon.update');
     });
 });
 

@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers\Backend\Common;
 
-use App\Models\ProductBrand;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
+use App\Services\CouponService;
 use App\Services\UtilityService;
 use App\Http\Controllers\Controller;
-use App\Services\ProductBrandService;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\ProductBrandUpdateRequest;
+use App\Http\Requests\CouponStoreRequest;
+use App\Http\Requests\CouponUpdateRequest;
 
 /**
  * ProductBrandController
  * @author Mehedi Hasan Shamim <sh158399@gmail.com>
  */
 
-class ProductBrandController extends Controller
+class CouponController extends Controller
 {
 
     private UtilityService $utility_service;
-    private ProductBrandService $product_brand_service;
+    private CouponService $coupon_service;
 
     /**
      * constructor method
@@ -28,8 +29,9 @@ class ProductBrandController extends Controller
     public function __construct()
     {
         $this->utility_service = new UtilityService();
-        $this->product_brand_service = new ProductBrandService();
+        $this->coupon_service = new CouponService();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,9 +39,10 @@ class ProductBrandController extends Controller
      */
     public function index()
     {
-        $breadCrumb = $this->utility_service->breadCrumb('Product Brand', 'tasks');
-        return view('backend.common.productBrand.index', ['breadCrumb' => $breadCrumb]);
+        $breadCrumb = $this->utility_service->breadCrumb('Coupon', 'tasks');
+        return view('backend.common.coupon.index', ['breadCrumb' => $breadCrumb]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -48,7 +51,7 @@ class ProductBrandController extends Controller
      */
     public function create()
     {
-        return view('backend.common.productBrand.create')->render();
+        return view('backend.common.coupon.create')->render();
     }
 
     /**
@@ -57,10 +60,10 @@ class ProductBrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductBrandUpdateRequest $request)
+    public function store(CouponStoreRequest $request)
     {
         $data = $request->all();
-        return $this->product_brand_service->get_brand_store_Data($data);
+        return $this->coupon_service->get_coupon_store_Data($data);
     }
 
     /**
@@ -72,7 +75,7 @@ class ProductBrandController extends Controller
     public function show(Request $request)
     {
         if ($request->ajax()) {
-            $resultData = $this->product_brand_service->get_Product_brand_List_Data();
+            $resultData = $this->coupon_service->get_coupon_List_Data();
             return Datatables::of($resultData)
                 ->addColumn('actions', function ($resultData) {
                     $btn = "";
@@ -102,7 +105,7 @@ class ProductBrandController extends Controller
     public function statusChange($id)
     {
         if (!empty($id)) {
-            return $this->product_brand_service->get_product_brand_status_change($id);
+            return $this->coupon_service->get_coupon_status_change($id);
         }
     }
     /**
@@ -113,7 +116,7 @@ class ProductBrandController extends Controller
      */
     public function edit($id)
     {
-        $resultData = ProductBrand::find($id);
+        $resultData = Coupon::find($id);
         return view('backend.common.productBrand.update', compact(['resultData']))->render();
     }
 
@@ -124,10 +127,10 @@ class ProductBrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductBrandUpdateRequest $request)
+    public function update(CouponUpdateRequest $request)
     {
         $data = $request->all();
-        return $this->product_brand_service->get_product_brand_Update_Data($data);
+        return $this->coupon_service->get_coupon_Update_Data($data);
     }
 
     /**
